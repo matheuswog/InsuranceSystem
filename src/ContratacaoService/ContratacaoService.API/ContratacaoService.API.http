@@ -1,0 +1,17 @@
+### Criar Contratação
+POST https://localhost:7002/api/contratacoes
+Content-Type: application/json
+
+{
+  "propostaId": "{id-da-proposta}",
+  "observacoes": "Contratação realizada"
+}
+
+### Listar Contratações
+GET https://localhost:7002/api/contratacoes
+
+### Listar Contratações por Proposta
+GET https://localhost:7002/api/contratacoes/por-proposta/{propostaId}
+
+### Obter Contratação por ID
+GET https://localhost:7002/api/contratacoes/{id}

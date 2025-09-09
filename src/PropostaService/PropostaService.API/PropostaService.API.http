@@ -1,0 +1,33 @@
+### Criar Proposta
+POST https://localhost:7001/api/propostas
+Content-Type: application/json
+
+{
+  "nomeCliente": "João Silva",
+  "cpfCliente": "12345678901",
+  "emailCliente": "joao@email.com",
+  "valorSegurado": 100000,
+  "valorPremio": 1000,
+  "observacoes": "Seguro de vida"
+}
+
+### Listar Propostas
+GET https://localhost:7001/api/propostas
+
+### Listar Propostas por Status
+GET https://localhost:7001/api/propostas/por-status/1
+
+### Obter Proposta por ID
+GET https://localhost:7001/api/propostas/{id}
+
+### Alterar Status da Proposta
+PUT https://localhost:7001/api/propostas/{id}/status
+Content-Type: application/json
+
+{
+  "status": 2,
+  "observacoes": "Aprovada para contratação"
+}
+
+### Verificar se Proposta Existe
+GET https://localhost:7001/api/propostas/{id}/existe

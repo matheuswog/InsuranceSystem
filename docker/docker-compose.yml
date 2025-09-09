@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: insurance-sqlserver
+    environment:
+      SA_PASSWORD: "InsuranceSystem123!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - insurance-network
+
+  proposta-service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.PropostaService
+    container_name: proposta-service
+    ports:
+      - "7001:7001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PropostaServiceDb;User Id=sa;Password=InsuranceSystem123!;TrustServerCertificate=true;MultipleActiveResultSets=true
+    depends_on:
+      - sqlserver
+    networks:
+      - insurance-network
+
+  contratacao-service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ContratacaoService
+    container_name: contratacao-service
+    ports:
+      - "7002:7002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ContratacaoServiceDb;User Id=sa;Password=InsuranceSystem123!;TrustServerCertificate=true;MultipleActiveResultSets=true
+      - PropostaService__BaseUrl=http://proposta-service:7001
+    depends_on:
+      - sqlserver
+      - proposta-service
+    networks:
+      - insurance-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  insurance-network:
+    driver: bridge
