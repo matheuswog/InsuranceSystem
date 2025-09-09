@@ -1,22 +1,22 @@
-# Sistema de Seguros - MicroserviÁos
+# Sistema de Seguros - Microservi√ßos
 
-Sistema desenvolvido para gerenciar propostas de seguro e efetuar sua contrataÁ„o, utilizando arquitetura hexagonal e microserviÁos.
+Sistema desenvolvido para gerenciar propostas de seguro e efetuar sua contrata√ß√£o, utilizando arquitetura hexagonal e microservi√ßos.
 
 ## Arquitetura
 
-O sistema È composto por dois microserviÁos principais:
+O sistema √© composto por dois microservi√ßos principais:
 
 ### 1. PropostaService
-Respons·vel por:
+Respons√°vel por:
 - Criar propostas de seguro
 - Listar propostas
-- Alterar status da proposta (Em An·lise, Aprovada, Rejeitada)
+- Alterar status da proposta (Em An√°lise, Aprovada, Rejeitada)
 - Expor API REST
 
 ### 2. ContratacaoService
-Respons·vel por:
+Respons√°vel por:
 - Contratar uma proposta (somente se Aprovada)
-- Armazenar informaÁıes da contrataÁ„o
+- Armazenar informa√ß√µes da contrata√ß√£o
 - Comunicar-se com o PropostaService para verificar status da proposta
 - Expor API REST
 
@@ -30,42 +30,17 @@ Respons·vel por:
 - **xUnit** (Testes)
 - **Moq** (Mocks para testes)
 
-## Estrutura do Projeto
-
-`
-InsuranceSystem/
- src/
-    PropostaService/
-       PropostaService.API/          # Camada de apresentaÁ„o
-       PropostaService.Application/  # Camada de aplicaÁ„o
-       PropostaService.Domain/       # Camada de domÌnio
-       PropostaService.Infrastructure/ # Camada de infraestrutura
-    ContratacaoService/
-        ContratacaoService.API/       # Camada de apresentaÁ„o
-        ContratacaoService.Application/ # Camada de aplicaÁ„o
-        ContratacaoService.Domain/    # Camada de domÌnio
-        ContratacaoService.Infrastructure/ # Camada de infraestrutura
- tests/
-    PropostaService.Tests/            # Testes unit·rios
-    ContratacaoService.Tests/         # Testes unit·rios
- docker/
-    docker-compose.yml               # OrquestraÁ„o dos containers
-    Dockerfile.PropostaService       # Imagem do PropostaService
-    Dockerfile.ContratacaoService    # Imagem do ContratacaoService
- README.md
-`
-
-## PrÈ-requisitos
+## Pr√©-requisitos
 
 - .NET 9.0 SDK
 - Docker Desktop
-- SQL Server (opcional, se n„o usar Docker)
+- SQL Server (opcional, se n√£o usar Docker)
 
 ## Como Executar
 
-### OpÁ„o 1: Usando Docker Compose (Recomendado)
+### Op√ß√£o 1: Usando Docker Compose (Recomendado)
 
-1. Clone o repositÛrio:
+1. Clone o reposit√≥rio:
 `ash
 git clone <url-do-repositorio>
 cd InsuranceSystem
@@ -82,9 +57,9 @@ docker-compose up --build
 - ContratacaoService: http://localhost:7002
 - Swagger UI: http://localhost:7001/swagger e http://localhost:7002/swagger
 
-### OpÁ„o 2: ExecuÁ„o Local
+### Op√ß√£o 2: Execu√ß√£o Local
 
-1. Clone o repositÛrio:
+1. Clone o reposit√≥rio:
 `ash
 git clone <url-do-repositorio>
 cd InsuranceSystem
@@ -125,7 +100,7 @@ dotnet run
 # Executar todos os testes
 dotnet test
 
-# Executar testes especÌficos
+# Executar testes espec√≠ficos
 dotnet test tests/PropostaService.Tests
 dotnet test tests/ContratacaoService.Tests
 `
@@ -144,9 +119,9 @@ dotnet test tests/ContratacaoService.Tests
 ### ContratacaoService (Porta 7002)
 
 - POST /api/contratacoes - Contratar proposta
-- GET /api/contratacoes - Listar todas as contrataÁıes
-- GET /api/contratacoes/{id} - Obter contrataÁ„o por ID
-- GET /api/contratacoes/por-proposta/{propostaId} - Obter contrataÁ„o por proposta
+- GET /api/contratacoes - Listar todas as contrata√ß√µes
+- GET /api/contratacoes/{id} - Obter contrata√ß√£o por ID
+- GET /api/contratacoes/por-proposta/{propostaId} - Obter contrata√ß√£o por proposta
 
 ## Exemplo de Uso
 
@@ -156,7 +131,7 @@ dotnet test tests/ContratacaoService.Tests
 curl -X POST "http://localhost:7001/api/propostas" \
   -H "Content-Type: application/json" \
   -d '{
-    "nomeCliente": "Jo„o Silva",
+    "nomeCliente": "Jo√£o Silva",
     "cpfCliente": "12345678901",
     "emailCliente": "joao@email.com",
     "valorSegurado": 100000,
@@ -172,7 +147,7 @@ curl -X PUT "http://localhost:7001/api/propostas/{id}/status" \
   -H "Content-Type: application/json" \
   -d '{
     "status": 2,
-    "observacoes": "Aprovada para contrataÁ„o"
+    "observacoes": "Aprovada para contrata√ß√£o"
   }'
 `
 
@@ -183,17 +158,17 @@ curl -X POST "http://localhost:7002/api/contratacoes" \
   -H "Content-Type: application/json" \
   -d '{
     "propostaId": "{id-da-proposta}",
-    "observacoes": "ContrataÁ„o realizada"
+    "observacoes": "Contrata√ß√£o realizada"
   }'
 `
 
 ## Status das Propostas
 
-- 1 - Em An·lise
+- 1 - Em An√°lise
 - 2 - Aprovada
 - 3 - Rejeitada
 
-## Padrıes e Boas Pr·ticas Implementadas
+## Padr√µes e Boas Pr√°ticas Implementadas
 
 - **Arquitetura Hexagonal (Ports & Adapters)**
 - **Domain-Driven Design (DDD)**
@@ -202,9 +177,9 @@ curl -X POST "http://localhost:7002/api/contratacoes" \
 - **Dependency Injection**
 - **Repository Pattern**
 - **CQRS (Command Query Responsibility Segregation)**
-- **Testes Unit·rios com xUnit e Moq**
-- **Docker para containerizaÁ„o**
-- **ComunicaÁ„o entre microserviÁos via HTTP REST**
+- **Testes Unit√°rios com xUnit e Moq**
+- **Docker para containeriza√ß√£o**
+- **Comunica√ß√£o entre microservi√ßos via HTTP REST**
 
 ## Banco de Dados
 
@@ -212,16 +187,16 @@ O sistema utiliza SQL Server com duas bases de dados separadas:
 - PropostaServiceDb - Para o PropostaService
 - ContratacaoServiceDb - Para o ContratacaoService
 
-As migrations s„o executadas automaticamente na inicializaÁ„o das aplicaÁıes.
+As migrations s√£o executadas automaticamente na inicializa√ß√£o das aplica√ß√µes.
 
 ## Monitoramento e Logs
 
-O sistema implementa logging estruturado usando ILogger do .NET, com diferentes nÌveis de log configur·veis.
+O sistema implementa logging estruturado usando ILogger do .NET, com diferentes n√≠veis de log configur√°veis.
 
-## ContribuiÁ„o
+## Contribui√ß√£o
 
-1. FaÁa um fork do projeto
+1. Fa√ßa um fork do projeto
 2. Crie uma branch para sua feature (git checkout -b feature/AmazingFeature)
-3. Commit suas mudanÁas (git commit -m 'Add some AmazingFeature')
+3. Commit suas mudan√ßas (git commit -m 'Add some AmazingFeature')
 4. Push para a branch (git push origin feature/AmazingFeature)
 5. Abra um Pull Request
