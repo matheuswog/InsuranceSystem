@@ -2,7 +2,7 @@
 
 namespace PropostaService.Tests;
 
-public class PropostaTests
+public class PropostaDomainTests
 {
     [Fact]
     public void CriarProposta_DeveCriarComStatusEmAnalise()

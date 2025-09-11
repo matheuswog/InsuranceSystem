@@ -25,7 +25,7 @@ public class Proposta
         NomeCliente = string.Empty;
         CpfCliente = string.Empty;
         EmailCliente = string.Empty;
-    } // Para EF Core
+    }
 
     public Proposta(string nomeCliente, string cpfCliente, string emailCliente, 
                    decimal valorSegurado, decimal valorPremio, string? observacoes = null)

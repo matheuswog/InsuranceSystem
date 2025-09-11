@@ -8,7 +8,7 @@ public class Contratacao
     public string? Observacoes { get; private set; }
     public DateTime DataCriacao { get; private set; }
 
-    private Contratacao() { } // Para EF Core
+    private Contratacao() { }
 
     public Contratacao(Guid propostaId, string? observacoes = null)
     {

@@ -21,8 +21,9 @@ public class ContratacaoDbContext : DbContext
             entity.Property(e => e.Observacoes).HasMaxLength(1000);
             entity.Property(e => e.DataCriacao).IsRequired();
             
-            // Índice único para PropostaId para evitar múltiplas contratações da mesma proposta
             entity.HasIndex(e => e.PropostaId).IsUnique();
+            
+            // TODO: Considerar adicionar índice composto para consultas por data
         });
 
         base.OnModelCreating(modelBuilder);

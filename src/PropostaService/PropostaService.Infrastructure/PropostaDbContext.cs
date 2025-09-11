@@ -24,6 +24,8 @@ public class PropostaDbContext : DbContext
             entity.Property(e => e.Observacoes).HasMaxLength(1000);
             entity.Property(e => e.Status).HasConversion<int>();
             entity.Property(e => e.DataCriacao).IsRequired();
+            
+            // TODO: Adicionar índices para performance
         });
 
         base.OnModelCreating(modelBuilder);

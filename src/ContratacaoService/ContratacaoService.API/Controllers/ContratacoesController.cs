@@ -26,6 +26,7 @@ public class ContratacoesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ContratacaoDto>> CriarContratacao([FromBody] CriarContratacaoDto dto)
     {
+        // TODO: Implementar retry policy para comunicação com PropostaService
         var command = new CriarContratacaoCommand { Dto = dto };
         var resultado = await _criarContratacaoHandler.HandleAsync(command);
         

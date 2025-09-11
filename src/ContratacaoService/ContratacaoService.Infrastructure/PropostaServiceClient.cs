@@ -43,7 +43,7 @@ public class PropostaServiceClient : IPropostaServiceClient
                 PropertyNameCaseInsensitive = true
             });
 
-            return proposta?.Status == 2; // StatusProposta.Aprovada
+            return proposta?.Status == 2;
         }
         catch (Exception ex)
         {

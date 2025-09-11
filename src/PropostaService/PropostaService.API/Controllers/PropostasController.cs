@@ -33,6 +33,7 @@ public class PropostasController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<PropostaDto>> CriarProposta([FromBody] CriarPropostaDto dto)
     {
+        // TODO: Adicionar validação de CPF
         var command = new CriarPropostaCommand { Dto = dto };
         var resultado = await _criarPropostaHandler.HandleAsync(command);
         return CreatedAtAction(nameof(ObterProposta), new { id = resultado.Id }, resultado);

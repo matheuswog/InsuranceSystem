@@ -2,7 +2,7 @@
 
 namespace ContratacaoService.Tests;
 
-public class ContratacaoTests
+public class ContratacaoDomainTests
 {
     [Fact]
     public void CriarContratacao_DeveCriarComDadosCorretos()
